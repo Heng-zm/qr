@@ -1,38 +1,393 @@
+/* --- Global Resets & Base Styles --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F8F9FA;
+  color: #343A40;
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+/* --- App Container --- */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #FFFFFF;
+  padding: 20px 40px;
+  color: #007BFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #E9ECEF;
+  text-align: left;
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+main {
+  flex-grow: 1;
+  padding: 40px 40px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* --- QR Generator Layout --- */
+.qr-generator-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  background-color: #FFFFFF;
+  padding: 35px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid #DEE2E6;
+}
+
+.controls {
+  flex: 2 1 500px;
+  min-width: 380px;
+  padding-right: 30px;
+}
+
+.qr-preview {
+  flex: 1 1 320px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #F8F9FA;
+  border-radius: 6px;
+  border: 1px solid #E9ECEF;
+}
+
+/* --- Headings & Text --- */
+.controls h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #212529;
+  font-weight: 600;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #E9ECEF;
+}
+
+.controls h3 {
+  margin-top: 35px;
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #007BFF;
+}
+
+.qr-preview h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #212529;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+/* --- Form Control Groups --- */
+.control-group {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.control-group label:not(.checkbox-label span):not(.gradient-options-grid label) {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #495057;
+}
+.control-group label.label-disabled { /* For disabled labels */
+  color: #aaa !important;
+  font-style: italic;
+}
+
+
+/* --- Input Fields & Selects --- */
+.control-group input[type="text"],
+.control-group input[type="number"],
+.control-group select,
+.control-group input[type="file"] {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #CED4DA;
+  border-radius: 5px;
+  font-size: 0.95em;
+  background-color: #FFFFFF;
+  color: #495057;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.control-group input[type="text"]:focus,
+.control-group input[type="number"]:focus,
+.control-group select:focus,
+.control-group input[type="file"]:focus {
+  outline: none;
+  border-color: #80BDFF;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.control-group input[type="file"] {
+  padding: 8px 12px;
+}
+.control-group input[type="file"]::file-selector-button {
+  padding: 8px 12px;
+  margin-right: 12px;
+  border: 1px solid #CED4DA;
+  border-radius: 4px;
+  background-color: #E9ECEF;
+  color: #495057;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.control-group input[type="file"]::file-selector-button:hover {
+  background-color: #DEE2E6;
+}
+
+/* --- Color Picker --- */
+.control-group input[type="color"] {
+  width: 38px;
+  height: 38px;
+  padding: 2px;
+  border: 1px solid #CED4DA;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-left: 10px; /* Default margin, overridden in grid */
+  cursor: pointer;
+}
+.control-group input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+.control-group input[type="color"]::-webkit-color-swatch { border: none; border-radius: 3px; }
+
+.control-group input[type="color"][disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
+/* --- Checkbox --- */
+.control-group .checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 6px 0;
+}
+.control-group input[type="checkbox"] {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  accent-color: #007BFF;
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.control-group .checkbox-label span {
+  font-weight: normal;
+  font-size: 0.95em;
+  color: #495057;
+  line-height: 1.2;
+}
+
+/* --- Horizontal Rule --- */
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #E9ECEF;
+  margin: 40px 0;
+}
+
+/* --- Buttons --- */
+.download-btn,
+.controls button {
+  background-color: #007BFF;
   color: white;
+  padding: 10px 20px;
+  border: 1px solid #007BFF;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  letter-spacing: 0.5px;
 }
 
-.App-link {
-  color: #61dafb;
+.download-btn:hover,
+.controls button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+.download-btn:active,
+.controls button:active {
+  transform: translateY(1px);
+  background-color: #004a99;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.controls button.remove-logo-btn {
+  background-color: #DC3545;
+  border-color: #DC3545;
+  margin-left: 10px;
+}
+.controls button.remove-logo-btn:hover {
+  background-color: #C82333;
+  border-color: #BD2130;
+}
+.controls button.remove-logo-btn:active {
+  background-color: #B01E2D;
+}
+
+/* --- QR Code Preview Specifics --- */
+#qr-code-canvas {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto !important;
+  border-radius: 4px;
+}
+
+.qr-preview p.notes {
+  margin-top: 15px;
+  font-size: 0.8rem;
+  color: #6C757D;
+  max-width: 95%;
+  line-height: 1.5;
+}
+
+/* --- Gradient Controls UI --- */
+.gradient-controls-fieldset {
+  border: 1px solid #007BFF40; /* Lighter accent color border */
+  border-radius: 6px;
+  padding: 15px 20px 20px 20px; /* Top padding less due to legend */
+  margin-top: 15px; /* Space from the enable checkbox */
+  margin-bottom: 20px; /* Space before the next hr */
+  background-color: #fdfdff; /* Slightly off-white background */
+}
+
+.gradient-controls-fieldset legend {
+  font-weight: 500;
+  padding: 0 10px; /* Spacing around legend text */
+  color: #007BFF; /* Accent color for legend */
+  font-size: 0.95em;
+}
+
+.gradient-options-grid {
+  display: flex;
+  gap: 20px; /* Space between start and end color groups */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  align-items: flex-end; /* Align items nicely if they have different heights */
+}
+
+.gradient-options-grid .control-group {
+  flex: 1; /* Allow color pickers to share space */
+  min-width: 150px; /* Minimum width before wrapping */
+  margin-bottom: 10px; /* Reduced bottom margin for items in grid */
+}
+
+.gradient-options-grid .control-group label {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #495057;
+}
+.gradient-options-grid .control-group input[type="color"] {
+  vertical-align: middle;
+  margin-left: 0; /* Reset margin from global color input style */
+}
+
+.gradient-controls-fieldset .control-group select { /* Select within fieldset */
+  width: 100%; /* Ensure it takes full width of its parent group */
+}
+
+
+/* --- Footer --- */
+footer {
+  padding: 25px 40px;
+  background-color: #343A40;
+  color: #ADB5BD;
+  font-size: 0.875em;
+  text-align: center;
+}
+
+footer p { margin: 0; }
+
+/* --- Utility for small text/notes --- */
+.control-group small {
+  display: block;
+  font-size: 0.8rem;
+  color: #6C757D;
+  margin-top: 6px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .qr-generator-container {
+    flex-direction: column;
+    gap: 30px;
   }
-  to {
-    transform: rotate(360deg);
+  .controls {
+    padding-right: 0;
+  }
+  .controls, .qr-preview {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  body { font-size: 15px; }
+  .App-header { padding: 15px 20px; }
+  .App-header h1 { font-size: 1.5rem; }
+  main { padding: 20px 20px; }
+  .qr-generator-container, .controls, .qr-preview { padding: 20px; }
+
+  .control-group input[type="text"],
+  .control-group input[type="number"],
+  .control-group select {
+    padding: 9px 12px;
+  }
+  .download-btn,
+  .controls button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 15px;
+  }
+  .controls button.remove-logo-btn {
+     margin-left: 0;
+  }
+  .gradient-options-grid {
+    flex-direction: column; /* Stack gradient color pickers on small screens */
+    gap: 15px;
+  }
+  .gradient-options-grid .control-group {
+    min-width: 100%; /* Full width for each color picker group */
   }
 }
