@@ -8,7 +8,7 @@
   --card-bg: #ffffff;
   --text-color: #333;
   --border-color: #ddd;
-  --accent-color: #007aff; /* Standard iOS Blue */
+  --accent-color: #007aff;
   --accent-hover: #0056b3;
 }
 
@@ -23,11 +23,6 @@ body {
   min-height: 100vh;
 }
 
-/* We don't need the App header or footer for this simple look */
-.App-header, footer {
-  display: none;
-}
-
 /* --- Main Container --- */
 .simple-container {
   width: 100%;
@@ -38,7 +33,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Consistent spacing between elements */
+  gap: 20px;
 }
 
 /* --- Headings --- */
@@ -81,6 +76,13 @@ h1 {
 }
 
 /* --- Buttons --- */
+.primary-btn, .secondary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between icon and text */
+}
+
 .primary-btn {
   width: 100%;
   background: var(--accent-color);
@@ -123,7 +125,7 @@ h1 {
 
 .custom-options {
   display: grid;
-  gap: 20px; /* Consistent spacing */
+  gap: 24px; /* More space for more options */
 }
 
 .option-group {
@@ -135,6 +137,9 @@ h1 {
   font-size: 0.9rem;
   font-weight: 500;
   color: #555;
+  display: flex; /* For icon alignment */
+  align-items: center;
+  gap: 6px;
 }
 .option-group input,
 .option-group select {
@@ -155,6 +160,16 @@ h1 {
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
+
+.gradient-fieldset {
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+.gradient-fieldset .checkbox-label {
+  padding-bottom: 12px;
+}
+
 
 /* Simple checkbox style */
 .checkbox-label {
