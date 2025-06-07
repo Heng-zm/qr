@@ -1,4 +1,4 @@
-/* --- Global Resets & Base Styles --- */
+/* --- Global Resets & Base Styles (Dark Mode) --- */
 *,
 *::before,
 *::after {
@@ -12,13 +12,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F8F9FA;
-  color: #343A40;
+  background-color: #121212; /* Very dark gray for body */
+  color: #E0E0E0; /* Light gray for primary text */
   line-height: 1.65;
   font-size: 16px;
 }
 
-/* --- App Container --- */
+/* --- App Container (Dark Mode) --- */
 .App {
   text-align: center;
   display: flex;
@@ -27,11 +27,11 @@ body {
 }
 
 .App-header {
-  background-color: #FFFFFF;
+  background-color: #1E1E1E; /* Darker shade for header */
   padding: 20px 40px;
-  color: #007BFF;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid #E9ECEF;
+  color: #00AFFF; /* Brighter accent blue for title */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Shadow more subtle on dark */
+  border-bottom: 1px solid #333333; /* Darker border */
   text-align: left;
 }
 
@@ -49,17 +49,17 @@ main {
   margin: 0 auto;
 }
 
-/* --- QR Generator Layout --- */
+/* --- QR Generator Layout (Dark Mode) --- */
 .qr-generator-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 40px;
-  background-color: #FFFFFF;
+  background-color: #1E1E1E; /* Dark card background */
   padding: 35px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  border: 1px solid #DEE2E6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid #383838; /* Slightly lighter dark border */
 }
 
 .controls {
@@ -76,20 +76,20 @@ main {
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
-  background-color: #F8F9FA;
+  background-color: #2C2C2C; /* Slightly lighter dark for preview area */
   border-radius: 6px;
-  border: 1px solid #E9ECEF;
+  border: 1px solid #444444;
 }
 
-/* --- Headings & Text --- */
+/* --- Headings & Text (Dark Mode) --- */
 .controls h2 {
   margin-top: 0;
   font-size: 1.5rem;
-  color: #212529;
+  color: #F5F5F5; /* Very light gray / off-white for headings */
   font-weight: 600;
   margin-bottom: 30px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #E9ECEF;
+  border-bottom: 1px solid #444444;
 }
 
 .controls h3 {
@@ -97,18 +97,18 @@ main {
   margin-bottom: 20px;
   font-size: 1.1rem;
   font-weight: 600;
-  color: #007BFF;
+  color: #00AFFF; /* Brighter accent blue */
 }
 
 .qr-preview h3 {
   margin-top: 0;
   font-size: 1.25rem;
-  color: #212529;
+  color: #F5F5F5;
   font-weight: 500;
   margin-bottom: 25px;
 }
 
-/* --- Form Control Groups --- */
+/* --- Form Control Groups (Dark Mode) --- */
 .control-group {
   margin-bottom: 24px;
   text-align: left;
@@ -119,36 +119,45 @@ main {
   margin-bottom: 8px;
   font-weight: 500;
   font-size: 0.9rem;
-  color: #495057;
+  color: #B0B0B0; /* Lighter gray for labels */
 }
-.control-group label.label-disabled { /* For disabled labels */
-  color: #aaa !important;
+.control-group label.label-disabled {
+  color: #777777 !important; /* Mid-gray for disabled labels, still visible */
   font-style: italic;
 }
 
 
-/* --- Input Fields & Selects --- */
+/* --- Input Fields & Selects (Dark Mode) --- */
 .control-group input[type="text"],
 .control-group input[type="number"],
 .control-group select,
 .control-group input[type="file"] {
   width: 100%;
   padding: 10px 14px;
-  border: 1px solid #CED4DA;
+  border: 1px solid #555555; /* Darker border */
   border-radius: 5px;
   font-size: 0.95em;
-  background-color: #FFFFFF;
-  color: #495057;
+  background-color: #333333; /* Dark input background */
+  color: #E0E0E0; /* Light text in inputs */
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+.control-group select {
+  appearance: none; /* Custom dropdown arrow needed for some browsers in dark mode */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23AAAAAA%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: .65em auto;
+  padding-right: 2.5rem; /* Make space for custom arrow */
+}
+
 
 .control-group input[type="text"]:focus,
 .control-group input[type="number"]:focus,
 .control-group select:focus,
 .control-group input[type="file"]:focus {
   outline: none;
-  border-color: #80BDFF;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: #00AFFF; /* Brighter blue for focus border */
+  box-shadow: 0 0 0 0.2rem rgba(0, 175, 255, 0.25); /* Focus glow */
 }
 
 .control-group input[type="file"] {
@@ -157,38 +166,44 @@ main {
 .control-group input[type="file"]::file-selector-button {
   padding: 8px 12px;
   margin-right: 12px;
-  border: 1px solid #CED4DA;
+  border: 1px solid #555555;
   border-radius: 4px;
-  background-color: #E9ECEF;
-  color: #495057;
+  background-color: #444444; /* Darker button for file input */
+  color: #E0E0E0;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 .control-group input[type="file"]::file-selector-button:hover {
-  background-color: #DEE2E6;
+  background-color: #505050;
 }
 
-/* --- Color Picker --- */
+/* --- Color Picker (Dark Mode) --- */
+/* Native color pickers are hard to style universally for dark mode.
+   Their appearance is largely OS-dependent.
+   We can ensure the trigger button itself fits the theme. */
 .control-group input[type="color"] {
   width: 38px;
   height: 38px;
   padding: 2px;
-  border: 1px solid #CED4DA;
+  border: 1px solid #555555;
   border-radius: 5px;
   vertical-align: middle;
-  margin-left: 10px; /* Default margin, overridden in grid */
+  margin-left: 10px;
   cursor: pointer;
+  background-color: #333333; /* Match input background */
 }
+/* For Webkit, attempt to style the swatch */
 .control-group input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
-.control-group input[type="color"]::-webkit-color-swatch { border: none; border-radius: 3px; }
+.control-group input[type="color"]::-webkit-color-swatch { border: 1px solid #666; border-radius: 3px; }
 
 .control-group input[type="color"][disabled] {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 0.5; /* More pronounced opacity for disabled */
+  filter: grayscale(50%);
 }
 
 
-/* --- Checkbox --- */
+/* --- Checkbox (Dark Mode) --- */
 .control-group .checkbox-label {
   display: flex;
   align-items: center;
@@ -199,37 +214,39 @@ main {
   margin-right: 10px;
   width: 18px;
   height: 18px;
-  accent-color: #007BFF;
+  accent-color: #00AFFF; /* Brighter accent for checkbox */
   border-radius: 3px;
   cursor: pointer;
   flex-shrink: 0;
+  background-color: #444; /* Background for non-accent-color supporting browsers */
+  border: 1px solid #666; /* Border for non-accent-color supporting browsers */
 }
 .control-group .checkbox-label span {
   font-weight: normal;
   font-size: 0.95em;
-  color: #495057;
+  color: #B0B0B0; /* Label text for checkbox */
   line-height: 1.2;
 }
 
-/* --- Horizontal Rule --- */
+/* --- Horizontal Rule (Dark Mode) --- */
 hr {
   border: 0;
   height: 1px;
-  background-color: #E9ECEF;
+  background-color: #444444; /* Darker HR */
   margin: 40px 0;
 }
 
-/* --- Buttons --- */
+/* --- Buttons (Dark Mode) --- */
 .download-btn,
 .controls button {
-  background-color: #007BFF;
-  color: white;
+  background-color: #00AFFF; /* Brighter accent blue for primary buttons */
+  color: #121212; /* Dark text on bright button for contrast */
   padding: 10px 20px;
-  border: 1px solid #007BFF;
+  border: 1px solid #00AFFF;
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.95em;
-  font-weight: 500;
+  font-weight: 600; /* Bolder button text */
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
   display: inline-flex;
   align-items: center;
@@ -240,73 +257,75 @@ hr {
 
 .download-btn:hover,
 .controls button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #008fcc; /* Slightly darker shade on hover */
+  border-color: #008fcc;
 }
 .download-btn:active,
 .controls button:active {
   transform: translateY(1px);
-  background-color: #004a99;
+  background-color: #007cb3;
 }
 
 .controls button.remove-logo-btn {
-  background-color: #DC3545;
-  border-color: #DC3545;
+  background-color: #E53935; /* Brighter red for dark mode */
+  border-color: #E53935;
+  color: #FFFFFF; /* White text on red button */
   margin-left: 10px;
 }
 .controls button.remove-logo-btn:hover {
-  background-color: #C82333;
-  border-color: #BD2130;
+  background-color: #D32F2F;
+  border-color: #D32F2F;
 }
 .controls button.remove-logo-btn:active {
-  background-color: #B01E2D;
+  background-color: #C62828;
 }
 
-/* --- QR Code Preview Specifics --- */
+/* --- QR Code Preview Specifics (Dark Mode) --- */
 #qr-code-canvas {
   display: block;
   margin: 20px auto;
   max-width: 100%;
   height: auto !important;
   border-radius: 4px;
+  /* QR code itself will have its own bg/fg colors set by user */
 }
 
 .qr-preview p.notes {
   margin-top: 15px;
   font-size: 0.8rem;
-  color: #6C757D;
+  color: #9E9E9E; /* Lighter gray for notes */
   max-width: 95%;
   line-height: 1.5;
 }
 
-/* --- Gradient Controls UI --- */
+/* --- Gradient Controls UI (Dark Mode) --- */
 .gradient-controls-fieldset {
-  border: 1px solid #007BFF40; /* Lighter accent color border */
+  border: 1px solid rgba(0, 175, 255, 0.3); /* Lighter accent color border, more transparent */
   border-radius: 6px;
-  padding: 15px 20px 20px 20px; /* Top padding less due to legend */
-  margin-top: 15px; /* Space from the enable checkbox */
-  margin-bottom: 20px; /* Space before the next hr */
-  background-color: #fdfdff; /* Slightly off-white background */
+  padding: 15px 20px 20px 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  background-color: #2A2A2A; /* Darker fieldset background */
 }
 
 .gradient-controls-fieldset legend {
   font-weight: 500;
-  padding: 0 10px; /* Spacing around legend text */
-  color: #007BFF; /* Accent color for legend */
+  padding: 0 10px;
+  color: #00AFFF; /* Brighter accent for legend */
   font-size: 0.95em;
 }
 
 .gradient-options-grid {
   display: flex;
-  gap: 20px; /* Space between start and end color groups */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  align-items: flex-end; /* Align items nicely if they have different heights */
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-end;
 }
 
 .gradient-options-grid .control-group {
-  flex: 1; /* Allow color pickers to share space */
-  min-width: 150px; /* Minimum width before wrapping */
-  margin-bottom: 10px; /* Reduced bottom margin for items in grid */
+  flex: 1;
+  min-width: 150px;
+  margin-bottom: 10px;
 }
 
 .gradient-options-grid .control-group label {
@@ -316,38 +335,39 @@ hr {
   vertical-align: middle;
   font-weight: 500;
   font-size: 0.9rem;
-  color: #495057;
+  color: #B0B0B0; /* Label color in grid */
 }
 .gradient-options-grid .control-group input[type="color"] {
   vertical-align: middle;
-  margin-left: 0; /* Reset margin from global color input style */
+  margin-left: 0;
 }
 
-.gradient-controls-fieldset .control-group select { /* Select within fieldset */
-  width: 100%; /* Ensure it takes full width of its parent group */
+.gradient-controls-fieldset .control-group select {
+  width: 100%;
 }
 
 
-/* --- Footer --- */
+/* --- Footer (Dark Mode) --- */
 footer {
   padding: 25px 40px;
-  background-color: #343A40;
-  color: #ADB5BD;
+  background-color: #1E1E1E; /* Match header background */
+  color: #9E9E9E; /* Footer text color */
   font-size: 0.875em;
   text-align: center;
+  border-top: 1px solid #333333; /* Match header border */
 }
 
 footer p { margin: 0; }
 
-/* --- Utility for small text/notes --- */
+/* --- Utility for small text/notes (Dark Mode) --- */
 .control-group small {
   display: block;
   font-size: 0.8rem;
-  color: #6C757D;
+  color: #9E9E9E;
   margin-top: 6px;
 }
 
-/* --- Responsive Adjustments --- */
+/* --- Responsive Adjustments (Remain largely the same, colors handled above) --- */
 @media (max-width: 992px) {
   .qr-generator-container {
     flex-direction: column;
@@ -371,7 +391,8 @@ footer p { margin: 0; }
 
   .control-group input[type="text"],
   .control-group input[type="number"],
-  .control-group select {
+  .control-group select,
+  .control-group input[type="file"] {
     padding: 9px 12px;
   }
   .download-btn,
@@ -384,10 +405,10 @@ footer p { margin: 0; }
      margin-left: 0;
   }
   .gradient-options-grid {
-    flex-direction: column; /* Stack gradient color pickers on small screens */
+    flex-direction: column;
     gap: 15px;
   }
   .gradient-options-grid .control-group {
-    min-width: 100%; /* Full width for each color picker group */
+    min-width: 100%;
   }
 }
