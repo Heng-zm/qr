@@ -4,174 +4,315 @@
 }
 
 :root {
-  --bg-color: #f4f4f9;
-  --card-bg: #ffffff;
-  --text-color: #333;
-  --border-color: #ddd;
-  --accent-color: #007aff;
-  --accent-hover: #0056b3;
+  --bg-color: #111113;
+  --card-bg: #1C1C1E;
+  --inset-bg: #2C2C2E;
+  --text-primary: #F5F5F7;
+  --text-secondary: #8E8E93;
+  --accent-color: #7B61FF;
+  --accent-hover: #6A52E0;
+  --accent-green: #34C759;
+  --border-color: #444448;
+  --danger-color: #e53e3e;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--bg-color);
-  color: var(--text-color);
-  display: flex;
-  justify-content: center;
-  padding: 40px 20px;
-  min-height: 100vh;
+  color: var(--text-primary);
 }
 
-/* --- Main Container --- */
+/* --- Main App Container --- */
 .simple-container {
   width: 100%;
   max-width: 420px;
-  background: var(--card-bg);
-  padding: 32px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 20px auto;
+  padding: 24px 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* --- Headings --- */
 h1 {
   font-size: 1.8rem;
-  margin: 0 0 10px 0;
-  text-align: center;
-  color: var(--text-color);
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  text-align: left;
 }
 
-/* --- QR Preview --- */
+/* --- Tab Styles for Overflow Row --- */
+.tabs-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 8px;
+  margin-bottom: -8px;
+}
+.tabs-container::-webkit-scrollbar {
+  display: none;
+}
+.tabs-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.tab-btn {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: none;
+  background-color: var(--inset-bg);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+.tab-btn.active {
+  background-color: var(--accent-color);
+  color: #FFF;
+  box-shadow: 0 4px 10px rgba(123, 97, 255, 0.3);
+}
+.tab-btn span {
+  display: inline;
+  white-space: nowrap;
+}
+
+
+/* --- Sticky QR Preview --- */
 .qr-preview-wrapper {
+  position: sticky;
+  top: 20px;
+  z-index: 10;
+  background: rgba(44, 44, 46, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background: #f9f9f9;
-  border: 1px dashed var(--border-color);
-  border-radius: 8px;
-  min-height: 200px;
+  padding: 24px;
+  border-radius: 20px;
+  min-height: 250px;
 }
-#qr-code-canvas {
+#qr-code-canvas, #qr-code-svg {
   max-width: 100%;
   height: auto !important;
+  border-radius: 8px;
+}
+.qr-code-container {
+  transition: opacity 0.3s ease-out;
+}
+.qr-code-container.visible {
+  opacity: 1;
+}
+.qr-code-container:not(.visible) {
+  opacity: 0;
 }
 
-/* --- Input Fields --- */
-.main-input {
-  width: 100%;
-  padding: 14px;
-  font-size: 1rem;
+
+/* --- Input Field Styling --- */
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card-bg);
+  border-radius: 20px;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  padding: 0 18px;
+  transition: all 0.2s;
 }
-.main-input:focus {
-  outline: none;
+.input-wrapper:focus-within {
   border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(123, 97, 255, 0.4);
 }
+.input-wrapper input {
+  width: 100%;
+  height: 52px;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+}
+.input-wrapper input:focus {
+  outline: none;
+}
+.input-wrapper input::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Complex Forms */
+.form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 12px 18px;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s;
+}
+.form-grid:focus-within {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(123, 97, 255, 0.4);
+}
+.form-grid > div {
+  display: flex;
+  align-items: center;
+}
+.form-grid input, .form-grid select, .form-grid textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  height: 52px;
+}
+.form-grid textarea {
+  height: auto;
+  padding: 16px 0;
+  resize: vertical;
+}
+.form-grid input:focus, .form-grid select:focus, .form-grid textarea:focus {
+  outline: none;
+}
+.form-grid > div:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+.input-error-message {
+  color: var(--danger-color);
+  font-size: 0.8rem;
+  padding: 8px 18px 0;
+  text-align: center;
+}
+
+
+/* --- FIX: Prevent Mobile Zoom on Input Focus --- */
+.input-wrapper input,
+.form-grid input,
+.form-grid select,
+.form-grid textarea,
+.option-group input,
+.option-group select {
+    font-size: 16px;
+}
+
 
 /* --- Buttons --- */
 .primary-btn, .secondary-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px; /* Space between icon and text */
-}
-
-.primary-btn {
+  gap: 8px;
   width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.primary-btn {
   background: var(--accent-color);
   color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 14px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
 }
 .primary-btn:hover {
   background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(123, 97, 255, 0.3);
 }
-
+.primary-btn:disabled {
+  background-color: #555;
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
 .secondary-btn {
-  width: 100%;
-  background: transparent;
-  color: var(--accent-color);
-  border: 1px solid var(--border-color);
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.2s;
+  background: var(--inset-bg);
+  color: var(--text-primary);
 }
 .secondary-btn:hover {
-  border-color: var(--accent-color);
-  background: rgba(0, 122, 255, 0.05);
+  background: #3a3a3c;
 }
 
-/* --- Collapsible Options --- */
+/* Helper Actions */
+.helper-actions {
+  display: flex;
+  gap: 12px;
+}
+.helper-actions .secondary-btn {
+  padding: 12px;
+}
+.helper-actions .secondary-btn span {
+  display: none;
+}
+
+
+/* --- Collapsible Options Animation --- */
 .options-divider {
   border: 0;
   height: 1px;
   background-color: var(--border-color);
   margin: 0;
 }
-
+.options-container {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+.options-container.show {
+  max-height: 1500px;
+}
 .custom-options {
   display: grid;
-  gap: 24px; /* More space for more options */
-}
-
-.option-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 20px;
+  padding-top: 24px;
 }
 .option-group label {
-  font-size: 0.9rem;
+  color: var(--text-secondary);
   font-weight: 500;
-  color: #555;
-  display: flex; /* For icon alignment */
+  display: flex;
   align-items: center;
   gap: 6px;
+  margin-bottom: 8px;
 }
-.option-group input,
-.option-group select {
+.option-group input, .option-group select {
   width: 100%;
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  font-size: 0.9rem;
+  padding: 10px;
+  background: var(--inset-bg);
+  border: 1px solid #444;
+  color: var(--text-primary);
+  border-radius: 8px;
 }
 .option-group input[type="color"] {
   height: 38px;
   padding: 4px;
 }
-
-/* For side-by-side color pickers */
+.gradient-fieldset {
+  background: var(--inset-bg);
+  border: none;
+  border-radius: 16px;
+  padding: 16px;
+}
 .color-picker-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
-
-.gradient-fieldset {
-  padding: 16px;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+.style-note {
+  font-size: 0.8em;
+  color: var(--text-secondary);
+  margin-top: -12px;
+  margin-bottom: 20px;
 }
-.gradient-fieldset .checkbox-label {
-  padding-bottom: 12px;
-}
-
-
-/* Simple checkbox style */
 .checkbox-label {
   display: flex;
   align-items: center;
@@ -180,7 +321,152 @@ h1 {
   cursor: pointer;
 }
 
-/* Hide unused elements from other UIs */
-.app-layout, .qr-generator-container, .App-header, footer {
-  display: none;
+
+/* --- Download Format Selector --- */
+.download-format-selector {
+  display: flex;
+  background-color: var(--inset-bg);
+  border-radius: 25px;
+  padding: 4px;
+}
+.download-format-selector label {
+  flex: 1;
+  position: relative;
+}
+.download-format-selector input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.download-format-selector span {
+  display: block;
+  text-align: center;
+  padding: 8px;
+  border-radius: 21px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+.download-format-selector input[type="radio"]:checked + span {
+  background-color: var(--accent-green);
+  color: #FFF;
+}
+
+/* --- Toast Notification --- */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: #323232;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-weight: 500;
+  z-index: 1000;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.215, 0.610, 0.355, 1), opacity 0.4s ease;
+}
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* --- SVG Specific Styles --- */
+.qr-code-styler-wrapper.qr-style-rounded #qr-code-svg rect {
+  rx: 3px;
+  ry: 3px;
+}
+
+/* --- Template Management Styles --- */
+.template-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--inset-bg);
+  padding: 16px;
+  border-radius: 16px;
+}
+.template-manager .secondary-btn {
+  background-color: var(--card-bg);
+}
+.template-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 150px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+.template-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--card-bg);
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.template-item button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+}
+.template-item button:hover {
+  color: var(--danger-color);
+}
+.template-item span {
+  font-weight: 500;
+  cursor: pointer;
+}
+.template-item span:hover {
+  color: var(--accent-color);
+}
+
+/* --- Data Overview Row Style --- */
+.qr-data-overview {
+  background-color: var(--inset-bg);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-top: -8px;
+}
+.qr-data-overview p {
+  margin: 0;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+
+/* ============================================= */
+/* ---        RESPONSIVE STYLES START        --- */
+/* ============================================= */
+
+@media (max-width: 375px) {
+  .simple-container { padding: 24px 10px; gap: 20px; }
+  h1 { font-size: 1.6rem; }
+  .primary-btn, .secondary-btn { padding: 14px; }
+}
+
+@media (min-width: 420px) {
+  .simple-container { padding: 24px; }
+  .helper-actions .secondary-btn span { display: inline; }
+}
+
+@media (min-width: 768px) {
+  .simple-container { max-width: 500px; margin: 60px auto; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .qr-preview-wrapper {
+    position: relative; top: auto; backdrop-filter: none;
+    -webkit-backdrop-filter: none; background: var(--card-bg); min-height: auto;
+  }
+  #qr-code-canvas, #qr-code-svg { max-width: 150px !important; }
 }
